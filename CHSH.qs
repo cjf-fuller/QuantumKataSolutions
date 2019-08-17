@@ -94,9 +94,8 @@ namespace Quantum.Kata.CHSHGame {
         // The following lines enforce the constraints on the input that you are given.
         // You don't need to modify them. Feel free to remove them, this won't cause your code to fail.
         EqualityFactI(Length(qs), 2, "The array should have exactly 2 qubits.");
-		
 		H(qs[0]);
-		CNOT(qs[0],qs[1]);        
+		CNOT(qs[0],qs[1]);    
     }
 
 
@@ -178,16 +177,16 @@ namespace Quantum.Kata.CHSHGame {
     // which you've implemented in tasks 2.2 and 2.4, respectively.
     operation PlayQuantumCHSH (askAlice : (Qubit => Bool), askBob : (Qubit => Bool))
             : (Bool, Bool) {
-
         using ((q1,q2) = (Qubit(), Qubit())) {
 
             CreateEntangledPair_Reference([q1, q2]);
 
             let resA = askAlice(q1);
             let resB = askBob(q2);
+            Reset(q1);
+            Reset(q2);
             return (resA, resB);
         }
-
     }
 
 }
